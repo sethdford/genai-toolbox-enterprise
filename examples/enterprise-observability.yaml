@@ -1,0 +1,50 @@
+# Enterprise Observability Configuration
+# Connect to Honeycomb, Splunk, and Tableau for observability and analytics
+
+sources:
+  # Honeycomb - Modern observability platform
+  production-honeycomb:
+    kind: honeycomb
+    apiKey: ${HONEYCOMB_API_KEY}
+    dataset: production
+    environment: prod
+    baseUrl: https://api.honeycomb.io
+    timeout: 30
+
+  # Splunk Enterprise - Log aggregation and SIEM
+  security-splunk:
+    kind: splunk
+    host: splunk.company.com
+    port: 8089
+    scheme: https
+    # Option 1: Token-based auth (recommended)
+    token: ${SPLUNK_TOKEN}
+    # Option 2: Username/password auth
+    # username: admin
+    # password: ${SPLUNK_PASSWORD}
+    hecPort: 8088
+    hecToken: ${SPLUNK_HEC_TOKEN}
+    timeout: 120s
+
+  # Tableau Server - Business intelligence
+  analytics-tableau:
+    kind: tableau
+    serverUrl: https://tableau.company.com
+    siteName: Production
+    # Option 1: Personal Access Token (recommended)
+    personalAccessTokenName: genai-toolbox
+    personalAccessTokenSecret: ${TABLEAU_PAT_SECRET}
+    # Option 2: Username/password
+    # username: tableau_admin
+    # password: ${TABLEAU_PASSWORD}
+    apiVersion: "3.27"
+
+  # Amazon CloudWatch for AWS metrics and logs
+  aws-cloudwatch:
+    kind: cloudwatch
+    region: us-east-1
+
+  # Google Cloud Operations (formerly Stackdriver)
+  gcp-logging:
+    kind: cloudlogging
+    projectID: my-gcp-project

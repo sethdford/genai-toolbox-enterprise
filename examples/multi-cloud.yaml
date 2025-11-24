@@ -1,0 +1,61 @@
+# Multi-Cloud Database Configuration
+# Mix of AWS, GCP, and on-premises databases
+
+sources:
+  # === AWS DATABASES ===
+
+  aws-dynamodb:
+    kind: dynamodb
+    region: us-east-1
+
+  aws-redshift:
+    kind: redshift
+    host: my-redshift.abc123.us-east-1.redshift.amazonaws.com
+    port: "5439"
+    user: admin
+    password: ${AWS_REDSHIFT_PASSWORD}
+    database: analytics
+
+  # === GCP DATABASES ===
+
+  gcp-bigquery:
+    kind: bigquery
+    projectID: my-gcp-project
+    dataset: analytics
+
+  gcp-spanner:
+    kind: spanner
+    projectID: my-gcp-project
+    instanceID: my-instance
+    databaseID: production
+
+  gcp-firestore:
+    kind: firestore
+    projectID: my-gcp-project
+
+  # === ON-PREMISES / HYBRID ===
+
+  datacenter-postgres:
+    kind: postgres
+    host: db.internal.company.com
+    port: "5432"
+    user: app_user
+    password: ${POSTGRES_PASSWORD}
+    database: production
+
+  datacenter-mongodb:
+    kind: mongodb
+    uri: mongodb://admin:${MONGO_PASSWORD}@mongodb.internal.company.com:27017/production?authSource=admin
+
+  # === OBSERVABILITY ===
+
+  honeycomb:
+    kind: honeycomb
+    apiKey: ${HONEYCOMB_API_KEY}
+    dataset: production
+
+  splunk:
+    kind: splunk
+    host: splunk.company.com
+    port: 8089
+    token: ${SPLUNK_TOKEN}

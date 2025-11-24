@@ -1,0 +1,28 @@
+# Quick Start Configuration
+# Simple example with PostgreSQL and MySQL for local development
+
+sources:
+  # Local PostgreSQL database
+  local-postgres:
+    kind: postgres
+    host: localhost
+    port: "5432"
+    user: postgres
+    password: postgres
+    database: myapp
+
+  # Local MySQL database
+  local-mysql:
+    kind: mysql
+    host: localhost
+    port: "3306"
+    user: root
+    password: password
+    database: myapp
+
+  # Local Redis cache
+  local-redis:
+    kind: redis
+    host: localhost
+    port: "6379"
+    database: 0

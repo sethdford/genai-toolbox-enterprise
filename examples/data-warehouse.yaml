@@ -1,0 +1,53 @@
+# Data Warehouse & Analytics Configuration
+# Optimized for analytics workloads
+
+sources:
+  # Amazon Redshift - AWS data warehouse
+  redshift-prod:
+    kind: redshift
+    host: analytics-cluster.abc123.us-east-1.redshift.amazonaws.com
+    port: "5439"
+    user: analyst
+    password: ${REDSHIFT_PASSWORD}
+    database: dwh
+    maxOpenConns: 50  # Higher for analytics workloads
+    maxIdleConns: 10
+
+  # Google BigQuery - GCP serverless data warehouse
+  bigquery-analytics:
+    kind: bigquery
+    projectID: analytics-project
+    dataset: warehouse
+
+  # Amazon Athena - Serverless SQL on S3
+  athena-datalake:
+    kind: athena
+    region: us-east-1
+    database: data_lake
+    outputLocation: s3://athena-query-results/
+    workGroup: analytics
+    encryptionOption: SSE_S3
+
+  # Google Cloud Spanner - Global distributed SQL
+  spanner-global:
+    kind: spanner
+    projectID: global-app
+    instanceID: global-instance
+    databaseID: application
+
+  # ClickHouse - OLAP database
+  clickhouse-events:
+    kind: clickhouse
+    host: clickhouse.company.com
+    port: 9000
+    user: analyst
+    password: ${CLICKHOUSE_PASSWORD}
+    database: events
+
+  # Tableau for visualization
+  tableau-dashboards:
+    kind: tableau
+    serverUrl: https://tableau.company.com
+    siteName: Analytics
+    personalAccessTokenName: dwh-access
+    personalAccessTokenSecret: ${TABLEAU_PAT}

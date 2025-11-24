@@ -1,0 +1,90 @@
+# Complete AWS Database Sources Configuration
+# This example shows all available AWS database integrations
+
+sources:
+  # Amazon DynamoDB - NoSQL key-value database
+  production-dynamodb:
+    kind: dynamodb
+    region: us-east-1
+    # Uses AWS credential chain (IAM role, env vars, or ~/.aws/credentials)
+
+  # Amazon S3 - Object storage
+  data-lake-s3:
+    kind: s3
+    region: us-east-1
+    bucket: my-data-lake
+
+  # Amazon Redshift - Data warehouse
+  analytics-redshift:
+    kind: redshift
+    host: my-cluster.abc123.us-east-1.redshift.amazonaws.com
+    port: "5439"
+    user: admin
+    password: ${REDSHIFT_PASSWORD}  # Use environment variable
+    database: analytics
+    maxOpenConns: 25
+    maxIdleConns: 5
+
+  # Amazon Athena - Serverless SQL queries
+  query-athena:
+    kind: athena
+    region: us-east-1
+    database: default
+    outputLocation: s3://my-athena-results/
+    workGroup: primary
+    encryptionOption: SSE_S3
+
+  # Amazon DocumentDB - MongoDB-compatible
+  documents-documentdb:
+    kind: documentdb
+    uri: mongodb://admin:${DOCDB_PASSWORD}@my-cluster.us-east-1.docdb.amazonaws.com:27017/?ssl=true&replicaSet=rs0
+    tlsCAFile: /path/to/rds-combined-ca-bundle.pem
+
+  # Amazon Neptune - Graph database
+  knowledge-neptune:
+    kind: neptune
+    endpoint: wss://my-neptune.cluster-abc123.us-east-1.neptune.amazonaws.com:8182/gremlin
+    useIAM: true
+
+  # Amazon Timestream - Time series database
+  metrics-timestream:
+    kind: timestream
+    region: us-east-1
+    database: ApplicationMetrics
+
+  # Amazon QLDB - Quantum Ledger Database
+  ledger-qldb:
+    kind: qldb
+    region: us-east-1
+    ledgerName: TransactionLedger
+
+  # Amazon CloudWatch Logs - Log aggregation
+  logs-cloudwatch:
+    kind: cloudwatch
+    region: us-east-1
+
+  # Amazon RDS Aurora PostgreSQL (uses standard postgres driver)
+  aurora-postgres:
+    kind: postgres
+    host: my-aurora.cluster-abc123.us-east-1.rds.amazonaws.com
+    port: "5432"
+    user: postgres
+    password: ${AURORA_PASSWORD}
+    database: production
+
+  # Amazon RDS Aurora MySQL (uses standard mysql driver)
+  aurora-mysql:
+    kind: mysql
+    host: my-aurora-mysql.cluster-abc123.us-east-1.rds.amazonaws.com
+    port: "3306"
+    user: admin
+    password: ${AURORA_MYSQL_PASSWORD}
+    database: production
+
+  # Amazon ElastiCache Redis (uses standard redis driver)
+  cache-elasticache:
+    kind: redis
+    host: my-cache.abc123.cache.amazonaws.com
+    port: "6379"
+    password: ${REDIS_PASSWORD}
+    database: 0

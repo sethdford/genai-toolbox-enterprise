@@ -1,0 +1,52 @@
+# Local Development Configuration
+# For testing with local databases and services
+
+sources:
+  # PostgreSQL (via Docker: docker run -p 5432:5432 -e POSTGRES_PASSWORD=dev postgres)
+  dev-postgres:
+    kind: postgres
+    host: localhost
+    port: "5432"
+    user: postgres
+    password: dev
+    database: development
+
+  # MySQL (via Docker: docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=dev mysql)
+  dev-mysql:
+    kind: mysql
+    host: localhost
+    port: "3306"
+    user: root
+    password: dev
+    database: development
+
+  # MongoDB (via Docker: docker run -p 27017:27017 mongo)
+  dev-mongodb:
+    kind: mongodb
+    uri: mongodb://localhost:27017/development
+
+  # Redis (via Docker: docker run -p 6379:6379 redis)
+  dev-redis:
+    kind: redis
+    host: localhost
+    port: "6379"
+    database: 0
+
+  # DynamoDB Local (via Docker: docker run -p 8000:8000 amazon/dynamodb-local)
+  dev-dynamodb:
+    kind: dynamodb
+    region: us-east-1
+    endpoint: http://localhost:8000
+    # Use dummy credentials for DynamoDB Local
+    accessKeyId: fakeAccessKey
+    secretAccessKey: fakeSecretKey
+
+  # LocalStack S3 (via Docker: docker run -p 4566:4566 localstack/localstack)
+  dev-s3:
+    kind: s3
+    region: us-east-1
+    bucket: dev-bucket
+    endpoint: http://localhost:4566
+    forcePathStyle: true
+    accessKeyId: test
+    secretAccessKey: test
