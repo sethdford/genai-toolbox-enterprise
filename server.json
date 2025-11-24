@@ -14,7 +14,7 @@
         "url": "https://github.com/sethdford/genai-toolbox-enterprise",
         "source": "github"
     },
-    "version": "0.21.2",
+    "version": "0.21.3",
     "packages": [
         {
             "registryType": "oci",
