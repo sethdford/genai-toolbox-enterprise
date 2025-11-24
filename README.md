@@ -34,7 +34,10 @@ documentation](https://googleapis.github.io/genai-toolbox/).
   - [Installing the server](#installing-the-server)
   - [Running the server](#running-the-server)
   - [Integrating your application](#integrating-your-application)
-  - [Using Toolbox with Gemini CLI Extensions](#using-toolbox-with-gemini-cli-extensions)
+  - [IDE & AI Assistant Integrations](#ide--ai-assistant-integrations)
+    - [Claude Code (Claude Desktop)](#-claude-code-claude-desktop)
+    - [GitHub Copilot](#-github-copilot)
+    - [Gemini CLI Extensions](#-using-toolbox-with-gemini-cli-extensions)
 - [Configuration](#configuration)
   - [Sources](#sources)
   - [Tools](#tools)
@@ -979,7 +982,73 @@ For more detailed instructions on using the Toolbox Core SDK, see the
 </blockquote>
 </details>
 
-### Using Toolbox with Gemini CLI Extensions
+### IDE & AI Assistant Integrations
+
+Enterprise GenAI Toolbox supports multiple AI coding assistants and IDEs through the Model Context Protocol (MCP). Connect your favorite AI assistant to your databases and infrastructure for enhanced development workflows.
+
+#### 🤖 Claude Code (Claude Desktop)
+
+Connect Enterprise GenAI Toolbox to Claude Desktop for AI-powered database queries and infrastructure management.
+
+**Quick Setup:**
+```json
+// ~/Library/Application Support/Claude/claude_desktop_config.json
+{
+  "mcpServers": {
+    "enterprise-database-toolbox": {
+      "command": "/usr/local/bin/genai-toolbox",
+      "args": ["--tools-file", "/path/to/tools.yaml", "--stdio"],
+      "env": {
+        "AWS_REGION": "us-east-1",
+        "AWS_PROFILE": "default"
+      }
+    }
+  }
+}
+```
+
+**Features:**
+- Direct database access from Claude Desktop
+- Natural language queries to DynamoDB, S3, Redshift, CloudWatch
+- Schema-aware code generation
+- Debugging with live data
+
+📖 **[Complete Claude Code Integration Guide →](docs/guides/CLAUDE_CODE_INTEGRATION.md)**
+
+#### ✨ GitHub Copilot
+
+Integrate Enterprise GenAI Toolbox with GitHub Copilot in VS Code for AI-powered development with real-time database context.
+
+**Quick Setup:**
+```json
+// .vscode/settings.json
+{
+  "github.copilot.advanced": {
+    "externalTools": [
+      {
+        "name": "enterprise-database-toolbox",
+        "url": "http://localhost:5000",
+        "description": "Access to AWS databases and observability platforms"
+      }
+    ]
+  }
+}
+```
+
+**Start the HTTP server:**
+```bash
+genai-toolbox --tools-file tools.yaml --port 5000
+```
+
+**Features:**
+- Data-driven development with live schema access
+- Schema-aware code completion and generation
+- Real-time debugging with CloudWatch logs
+- Performance optimization with actual data patterns
+
+📖 **[Complete GitHub Copilot Integration Guide →](docs/guides/GITHUB_COPILOT_INTEGRATION.md)**
+
+#### 🔷 Using Toolbox with Gemini CLI Extensions
 
 [Gemini CLI extensions][gemini-cli-extensions] provide tools to interact
 directly with your data sources from command line. Below is a list of Gemini CLI
