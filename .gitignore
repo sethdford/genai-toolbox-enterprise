@@ -24,9 +24,12 @@ toolbox
 
 # Build artifacts
 dist/
-bin/
 *.tar.gz
 *.zip
+
+# NPM wrapper binaries (but track the .js wrapper script)
+bin/*
+!bin/*.js
 
 # Test files
 test-tools.yaml
