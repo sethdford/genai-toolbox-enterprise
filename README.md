@@ -2,7 +2,7 @@
 
 # Enterprise GenAI Toolbox
 
-[![Docs](https://img.shields.io/badge/docs-MCP_Toolbox-blue)](https://googleapis.github.io/genai-toolbox/)
+[![Docs](https://img.shields.io/badge/docs-Enterprise_Toolbox-blue)](https://github.com/sethdford/genai-toolbox-enterprise/tree/main/docs)
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=flat&logo=discord&logoColor=white)](https://discord.gg/Dmm69peqjh)
 [![Medium](https://img.shields.io/badge/Medium-12100E?style=flat&logo=medium&logoColor=white)](https://medium.com/@mcp_toolbox)
 [![Go Report Card](https://goreportcard.com/badge/github.com/googleapis/genai-toolbox)](https://goreportcard.com/report/github.com/googleapis/genai-toolbox)
@@ -13,8 +13,7 @@
 
 Enterprise GenAI Toolbox is a production-ready MCP server for enterprise databases and observability platforms. It provides a unified interface to AWS databases, NoSQL stores, analytics platforms, and observability tools with enterprise-grade security, performance, and reliability.
 
-This README provides a brief overview. For comprehensive details, see the [full
-documentation](https://googleapis.github.io/genai-toolbox/).
+This README provides a brief overview. For comprehensive details, see our [integration guides](docs/guides/) and [examples](examples/).
 
 > [!NOTE]
 > This solution was originally named “Gen AI Toolbox for Databases” as
@@ -110,9 +109,7 @@ Here's how it will save you time:
   setup and boilerplate. MCP Toolbox helps streamline lengthy database
   configurations, repetitive code, and error-prone schema migrations.
 
-Learn [how to connect your AI tools (IDEs) to Toolbox using MCP][connect-ide].
-
-[connect-ide]: https://googleapis.github.io/genai-toolbox/how-to/connect-ide/
+Learn how to connect your AI tools to Enterprise GenAI Toolbox in our [IDE integration guides](docs/guides/).
 
 ## Quick Start for Enterprise AWS
 
@@ -476,9 +473,7 @@ for more information.
 You can use `toolbox help` for a full list of flags! To stop the server, send a
 terminate signal (`ctrl+c` on most platforms).
 
-For more detailed documentation on deploying to different environments, check
-out the resources in the [How-to
-section](https://googleapis.github.io/genai-toolbox/how-to/)
+For more detailed documentation on deploying to different environments, see our [Production Deployment Guide](docs/guides/PRODUCTION_DEPLOYMENT_GUIDE.md) and [AWS Integration Guide](docs/guides/AWS_INTEGRATIONS.md)
 
 ### Integrating your application
 
@@ -1089,9 +1084,10 @@ To use [prebuilt tools][prebuilt] with Gemini CLI:
 - [Firestore](https://github.com/gemini-cli-extensions/firestore-native)
 - [SQL Server](https://github.com/gemini-cli-extensions/sql-server)
 
-[prebuilt]: https://googleapis.github.io/genai-toolbox/reference/prebuilt-tools/
 [gemini-cli-extensions]:
     https://github.com/google-gemini/gemini-cli/blob/main/docs/extensions/index.md
+
+> **Note:** Gemini CLI extensions reference prebuilt tools from the original Google project. For Enterprise features (AWS, Honeycomb, Splunk, Tableau), see our [integration guides](docs/guides/).
 
 ## Configuration
 
@@ -1099,8 +1095,7 @@ The primary way to configure Toolbox is through the `tools.yaml` file. If you
 have multiple files, you can tell toolbox which to load with the `--tools-file
 tools.yaml` flag.
 
-You can find more detailed reference documentation to all resource types in the
-[Resources](https://googleapis.github.io/genai-toolbox/resources/).
+You can find more detailed examples and reference documentation in our [examples directory](examples/) and [integration guides](docs/guides/).
 
 ### Sources
 
@@ -1296,8 +1291,7 @@ tools:
     statement: SELECT * FROM hotels WHERE name ILIKE '%' || $1 || '%';
 ```
 
-For more details on configuring different types of tools, see the
-[Tools](https://googleapis.github.io/genai-toolbox/resources/tools).
+For more details on configuring different types of tools, see our [AWS Integration Guide](docs/guides/AWS_INTEGRATIONS.md) for examples.
 
 ### Toolsets
 
@@ -1341,8 +1335,7 @@ prompts:
         description: "The code to review"
 ```
 
-For more details on configuring prompts, see the
-[Prompts](https://googleapis.github.io/genai-toolbox/resources/prompts).
+For more details on configuring prompts, see the examples in your [tools.yaml configuration](examples/).
 
 ## Production Deployment
 
